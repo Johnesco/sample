@@ -1,0 +1,80 @@
+** game: ../RNG.ulx
+** interpreter: /home/johnesco/glulxe/glulxe -q
+
+* smoke
+> look
+Entrance Hall
+crystal chandelier
+brass key
+
+* take-key
+> take brass key
+Taken
+
+* library-journal
+> n
+Library
+bookshelves
+reading desk
+> open journal
+treasure is hidden
+
+* study-cabinet
+> take brass key
+Taken
+> n
+Library
+> up
+Study
+wooden cabinet
+> unlock cabinet with brass key
+You unlock
+> open cabinet
+You open
+> take silver locket
+/glow|accomplishment/
+
+* garden-coin
+> s
+Garden
+stone fountain
+> take rusty coin
+/grime|weight/
+
+* pond-ring
+> s
+> s
+Pond
+flat stones
+> push flat stones
+golden ring
+
+* full-walkthrough
+{vital}
+> take brass key
+Taken
+> n
+Library
+> open journal
+treasure is hidden
+> s
+> s
+Garden
+> take rusty coin
+> s
+Pond
+> push flat stones
+golden ring
+> take golden ring
+Taken
+> n
+> n
+> n
+Library
+> up
+Study
+> unlock cabinet with brass key
+> open cabinet
+> take silver locket
+/glow|accomplishment/
+You have won

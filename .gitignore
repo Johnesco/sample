@@ -1,0 +1,22 @@
+# Build output
+*.ulx
+*.i6
+*.materials/
+
+# Inform 7 IDE project wrappers
+*.inform/
+
+# Claude Code local settings
+.claude/
+
+# OS generated files
+$RECYCLE.BIN/
+[Dd]esktop.ini
+.DS_Store
+Thumbs.db
+*~
+.*.sw[op]
+
+# IDE
+.vscode/
+.idea/
