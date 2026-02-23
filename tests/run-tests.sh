@@ -1,6 +1,6 @@
 #!/bin/bash
-# RNG RegTest runner (wrapper)
-# Delegates to the generic testing framework with RNG-specific config.
+# Sample RegTest runner (wrapper)
+# Delegates to the generic testing framework with sample-specific config.
 #
 # Usage:
 #   wsl -e bash tests/run-tests.sh                    # run all tests

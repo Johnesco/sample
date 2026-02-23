@@ -1,6 +1,6 @@
 #!/bin/bash
-# RNG seed sweep (wrapper)
-# Delegates to the generic testing framework with RNG-specific config.
+# Sample seed sweep (wrapper)
+# Delegates to the generic testing framework with sample-specific config.
 #
 # Usage:
 #   wsl -e bash tests/find-seeds.sh                # default sweep

@@ -1,4 +1,4 @@
-"RNG" by "Johnesco"
+"Sample" by "Claude Code"
 
 The story headline is "An Interactive Fiction".
 The story genre is "Fantasy".
@@ -17,7 +17,7 @@ Chapter 1 - Bibliographic and Settings
 When play begins:
 	now the left hand status line is "[the player's surroundings]   Score: [score]/[turn count]";
 	now the right hand status line is "";
-	say "[bold type]RNG[roman type][line break]An Interactive Fiction by Johnesco[line break]Release 1[paragraph break]".
+	say "[bold type]Sample[roman type][line break]An Interactive Fiction by Claude Code[line break]Release 1[paragraph break]".
 
 Chapter 2 - Score Ranks
 

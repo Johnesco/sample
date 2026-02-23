@@ -1,24 +1,24 @@
-# RNG — An Inform 7 Practice Game
+# Sample — An Inform 7 Practice Game
 
 A local-only Inform 7 project for practicing rooms, objects, and interactions via CLI workflow.
 
 ## Project Structure
 
 ```
-C:\code\i7\RNG\
+C:\code\i7\sample\
 ├── CLAUDE.md              ← You are here
 ├── story.ni               ← Source of truth (Inform 7 source)
-├── RNG.ulx                ← Compiled Glulx binary (build output)
+├── sample.ulx             ← Compiled Glulx binary (build output)
 ├── web/
 │   ├── play.html          ← Browser-playable game (Parchment player)
-│   └── lib/parchment/     ← Parchment JS libraries + RNG.ulx.js (base64 binary)
+│   └── lib/parchment/     ← Parchment JS libraries + sample.ulx.js (base64 binary)
 └── tests/
     ├── project.conf       ← Project-specific test configuration
     ├── run-tests.sh       ← RegTest runner (wrapper)
     ├── run-walkthrough.sh ← Walkthrough runner (wrapper)
     ├── find-seeds.sh      ← Seed discovery (wrapper)
     ├── seeds.conf         ← Golden seeds for deterministic testing
-    ├── RNG.regtest        ← RegTest regression test suite
+    ├── sample.regtest     ← RegTest regression test suite
     └── inform7/
         ├── walkthrough.txt        ← Walkthrough commands
         └── walkthrough_output.txt ← Generated transcript
@@ -48,13 +48,13 @@ CLI compilation (no `.inform` IDE bundle needed):
 # Step 2: Compile I6 → Glulx
 "/c/Program Files/Inform7IDE/Compilers/inform6.exe" -w -G \
     story.i6 \
-    RNG.ulx
+    sample.ulx
 
 # Step 3: Clean up intermediate file
 rm story.i6
 
 # Step 4: Update web player binary
-B64=$(base64 -w 0 RNG.ulx) && echo "processBase64Zcode('${B64}')" > web/lib/parchment/RNG.ulx.js
+B64=$(base64 -w 0 sample.ulx) && echo "processBase64Zcode('${B64}')" > web/lib/parchment/sample.ulx.js
 ```
 
 ## Web Player

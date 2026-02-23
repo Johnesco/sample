@@ -1,6 +1,6 @@
 #!/bin/bash
-# RNG walkthrough test runner (wrapper)
-# Delegates to the generic testing framework with RNG-specific config.
+# Sample walkthrough test runner (wrapper)
+# Delegates to the generic testing framework with sample-specific config.
 #
 # Usage:
 #   wsl -e bash tests/run-walkthrough.sh                  # Inform 7, golden seed
