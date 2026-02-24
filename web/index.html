@@ -30,6 +30,11 @@ body.source-collapsed #source-pane {
   display: none;
 }
 
+body.source-collapsed #game-pane {
+  max-width: 500px;
+  justify-self: center;
+}
+
 body.source-collapsed .game-toolbar .btn-source {
   display: inline-block;
 }
@@ -324,6 +329,7 @@ body.resizing iframe {
   }
 
   #resize-handle { display: none; }
+  #game-pane { max-width: 500px; justify-self: center; }
   .sidebar { display: none; }
 }
 </style>
