@@ -18,7 +18,8 @@ html, body {
 
 body {
   display: grid;
-  grid-template-columns: 1fr 5px minmax(300px, 45%);
+  --game-width: 55%;
+  grid-template-columns: var(--game-width) 5px 1fr;
 }
 
 body.source-collapsed {
@@ -312,9 +313,6 @@ body.resizing iframe {
 
 /* --- Responsive --- */
 @media (max-width: 1024px) {
-  body {
-    grid-template-columns: 1fr 5px 40%;
-  }
   .sidebar { display: none; }
 }
 
@@ -538,6 +536,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Snapshot game width so it stays fixed as window grows
+  var gamePane = document.getElementById('game-pane');
+  document.body.style.setProperty('--game-width', gamePane.offsetWidth + 'px');
+
   // Resize handle drag
   var handle = document.getElementById('resize-handle');
   handle.addEventListener('mousedown', startResize);
@@ -552,8 +554,7 @@ document.addEventListener('DOMContentLoaded', function() {
       var x = e.touches ? e.touches[0].clientX : e.clientX;
       var w = document.body.clientWidth;
       var gameW = Math.max(200, Math.min(x, w - 200));
-      var sourceW = w - gameW - 5;
-      document.body.style.gridTemplateColumns = gameW + 'px 5px ' + sourceW + 'px';
+      document.body.style.setProperty('--game-width', gameW + 'px');
     };
 
     var onUp = function() {
