@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sample &mdash; Source &amp; Game</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: #0a0a0a;
+  color: #d4c5a9;
+  font-family: Georgia, "Times New Roman", serif;
+  overflow: hidden;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 45%);
+}
+
+body.source-collapsed {
+  grid-template-columns: 1fr;
+}
+
+body.source-collapsed #source-pane {
+  display: none;
+}
+
+body.source-collapsed .game-toolbar .btn-source {
+  display: inline-block;
+}
+
+/* --- Source Pane --- */
+#source-pane {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-left: 1px solid #2a2418;
+  background: #0a0a0a;
+}
+
+.source-toolbar {
+  padding: 6px 12px;
+  background: #0e0a08;
+  border-bottom: 1px solid #2a2418;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85em;
+  color: #806050;
+  flex-shrink: 0;
+}
+
+.source-toolbar .file-path {
+  font-family: "SF Mono", "Fira Code", Consolas, "Courier New", monospace;
+  font-size: 0.9em;
+  color: #a08060;
+  white-space: nowrap;
+}
+
+.source-toolbar .line-count {
+  white-space: nowrap;
+}
+
+.source-toolbar .spacer {
+  flex: 1;
+}
+
+.search-box {
+  background: #110a08;
+  border: 1px solid #2a2418;
+  border-radius: 4px;
+  color: #d4c5a9;
+  font-family: "SF Mono", "Fira Code", Consolas, "Courier New", monospace;
+  font-size: 0.9em;
+  padding: 3px 8px;
+  width: 160px;
+  min-width: 80px;
+  outline: none;
+}
+
+.search-box:focus { border-color: #5a4a30; }
+.search-box::placeholder { color: #4a3a28; }
+
+.btn-dismiss {
+  background: none;
+  border: 1px solid #3a2a18;
+  border-radius: 4px;
+  color: #806050;
+  font-size: 1em;
+  cursor: pointer;
+  padding: 2px 8px;
+  line-height: 1;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.btn-dismiss:hover {
+  color: #d4c5a9;
+  border-color: #6a5a40;
+}
+
+/* --- Source with nav sidebar --- */
+.source-with-nav {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.sidebar {
+  width: 220px;
+  min-width: 220px;
+  background: #0c0a08;
+  border-right: 1px solid #1a1810;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.nav::-webkit-scrollbar { width: 6px; }
+.nav::-webkit-scrollbar-track { background: #0c0a08; }
+.nav::-webkit-scrollbar-thumb { background: #2a2418; border-radius: 3px; }
+
+.nav-item {
+  display: block;
+  padding: 4px 12px;
+  font-size: 0.82em;
+  color: #886850;
+  text-decoration: none;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: background 0.1s, color 0.1s;
+}
+
+.nav-item:hover {
+  background: #151008;
+  color: #c0a880;
+}
+
+.nav-item.active {
+  background: #18100a;
+  color: #e0c8a0;
+  border-left-color: #e8d090;
+}
+
+.nav-part {
+  font-weight: bold;
+  color: #c0a880;
+  padding-top: 10px;
+  font-size: 0.85em;
+}
+
+.nav-chapter { padding-left: 20px; }
+.nav-section { padding-left: 32px; font-size: 0.78em; color: #705840; }
+
+/* --- Source main (code area) --- */
+.source-main {
+  flex: 1;
+  overflow: auto;
+  padding: 12px 0;
+  min-height: 0;
+}
+
+.source-main::-webkit-scrollbar { width: 8px; }
+.source-main::-webkit-scrollbar-track { background: #0a0a0a; }
+.source-main::-webkit-scrollbar-thumb { background: #2a2418; border-radius: 4px; }
+.source-main::-webkit-scrollbar-thumb:hover { background: #3a3020; }
+
+/* --- Code table --- */
+table.code {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: "SF Mono", "Fira Code", "Cascadia Code", Consolas, "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+table.code td { vertical-align: top; }
+
+td.ln {
+  min-width: 40px;
+  padding: 0 12px 0 16px;
+  text-align: right;
+  color: #302818;
+  user-select: none;
+  white-space: nowrap;
+}
+
+td.lc {
+  white-space: pre-wrap;
+  word-break: break-all;
+  padding: 0 16px 0 0;
+}
+
+tr.heading-line td { padding-top: 8px; }
+tr.heading-line td.lc { font-weight: bold; color: #e0c8a0; font-size: 14px; }
+tr.heading-line td.ln { color: #5a4030; }
+
+tr:target td, tr.highlight td { background: #1a1008; }
+tr:target td.ln, tr.highlight td.ln { color: #806050; }
+
+/* --- Inform 7 syntax colors --- */
+.syn-str  { color: #8bab6e; }
+.syn-cmt  { color: #605840; font-style: italic; }
+.syn-sub  { color: #7ea8b0; }
+.syn-kw   { color: #c08050; }
+.syn-head { color: #e0c8a0; font-weight: bold; }
+.syn-rule { color: #b89860; }
+.syn-num  { color: #b08a70; }
+.syn-tbl  { color: #9090b0; }
+
+/* --- Search highlights --- */
+.search-hit {
+  background: #4a3a10;
+  color: #ffe0a0;
+  border-radius: 2px;
+}
+
+.search-current {
+  background: #6a4a10;
+  outline: 1px solid #aa8030;
+}
+
+/* --- Game Pane --- */
+#game-pane {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.game-toolbar {
+  padding: 6px 12px;
+  background: #0e0a08;
+  border-bottom: 1px solid #2a2418;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85em;
+  flex-shrink: 0;
+}
+
+.game-toolbar .game-title {
+  color: #aa9966;
+  letter-spacing: 1px;
+  font-size: 0.95em;
+}
+
+.game-toolbar .spacer { flex: 1; }
+
+.btn-source {
+  display: none;
+  background: none;
+  border: 1px solid #3a2a18;
+  border-radius: 4px;
+  color: #a08060;
+  font-family: inherit;
+  font-size: 0.85em;
+  cursor: pointer;
+  padding: 3px 12px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.btn-source:hover {
+  color: #e8d090;
+  border-color: #6a5a40;
+}
+
+#game-frame {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: #111;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  body {
+    grid-template-columns: 1fr 40%;
+  }
+  .sidebar { display: none; }
+}
+
+@media (max-width: 700px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  body.source-collapsed {
+    grid-template-rows: 1fr;
+  }
+
+  .sidebar { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== GAME PANE ===== -->
+<div id="game-pane">
+  <div class="game-toolbar">
+    <span class="game-title">Sample</span>
+    <span class="spacer"></span>
+    <button class="btn-source" id="btn-source">Source</button>
+  </div>
+  <iframe id="game-frame" src="play.html" title="Sample — Interactive Fiction"></iframe>
+</div>
+
+<!-- ===== SOURCE PANE ===== -->
+<div id="source-pane">
+  <div class="source-toolbar">
+    <span class="file-path">story.ni</span>
+    <input type="text" class="search-box" id="search-source" placeholder="Search... (Ctrl+F)">
+    <span class="spacer"></span>
+    <span class="line-count" id="line-count"></span>
+    <button class="btn-dismiss" id="btn-dismiss" title="Hide source">&times;</button>
+  </div>
+  <div class="source-with-nav">
+    <div class="sidebar" id="nav-sidebar">
+      <div class="nav" id="nav"></div>
+    </div>
+    <div class="source-main" id="source-main">
+      <!-- code table rendered by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ===== INLINE SOURCE ===== -->
+<script type="text/plain" id="story-source">
+"Sample" by "Claude Code"
+
+The story headline is "An Interactive Fiction".
+The story genre is "Fantasy".
+The release number is 1.
+The story creation year is 2026.
+The story description is "A practice game for learning Inform 7: rooms, objects, and interactions."
+
+Use American dialect.
+Use scoring.
+The maximum score is 10.
+
+Part 1 - Configuration
+
+Chapter 1 - Bibliographic and Settings
+
+When play begins:
+	now the left hand status line is "[the player's surroundings]   Score: [score]/[turn count]";
+	now the right hand status line is "";
+	say "[bold type]Sample[roman type][line break]An Interactive Fiction by Claude Code[line break]Release 1[paragraph break]".
+
+Chapter 2 - Score Ranks
+
+Table of Rankings
+score	ranking
+0	"Beginner"
+5	"Explorer"
+10	"Winner"
+
+Part 2 - The World
+
+Chapter 1 - The Entrance Hall
+
+The Entrance Hall is a room. "A grand hall with marble floors and high ceilings. A crystal chandelier hangs overhead. Exits lead north to a library, east to a kitchen, and south to a garden."
+
+The crystal chandelier is scenery in the Entrance Hall. The description is "An ornate chandelier with dozens of sparkling crystals."
+
+A brass key is in the Entrance Hall. The description is "A small brass key with an intricate pattern etched into its handle."
+
+Chapter 2 - The Library
+
+The Library is north of the Entrance Hall. "Tall bookshelves line every wall, crammed with leather-bound volumes. A reading desk sits in the center of the room. A narrow staircase leads up."
+
+The bookshelves are scenery in the Library. The description is "Rows upon rows of old books. Most are too faded to read."
+
+The reading desk is a supporter in the Library. The description is "A sturdy oak desk with a green leather writing surface." It is fixed in place.
+
+A dusty journal is on the reading desk. The description is "A leather-bound journal. The pages are yellowed with age."
+
+Instead of opening the dusty journal:
+	say "You flip through the journal. Most entries are illegible, but one page reads: 'The treasure is hidden where water meets stone.'";
+	if the dusty journal is not handled:
+		increase the score by 2;
+		now the dusty journal is handled.
+
+A thing can be handled or unhandled. A thing is usually unhandled.
+
+Chapter 3 - The Study
+
+The Study is up from the Library. "A cozy room at the top of the narrow staircase. A wooden cabinet stands against one wall. The only exit is back down."
+
+The wooden cabinet is a closed openable container in the Study. The description is "A tall cabinet made of dark walnut. It has a small brass lock." It is fixed in place and locked. The brass key unlocks the wooden cabinet.
+
+A silver locket is in the wooden cabinet. The description is "A delicate silver locket on a fine chain. It feels warm to the touch."
+
+After taking the silver locket for the first time:
+	say "As you pick up the locket, it glows faintly. You feel a sense of accomplishment.";
+	increase the score by 3.
+
+Chapter 4 - The Kitchen
+
+The Kitchen is east of the Entrance Hall. "A rustic kitchen with a stone hearth and a heavy wooden table. The smell of old spices lingers in the air. A doorway leads west back to the hall."
+
+The stone hearth is scenery in the Kitchen. The description is "A large hearth, cold now, with a few charred logs inside."
+
+The wooden table is a supporter in the Kitchen. The description is "A rough-hewn table scarred by years of use." It is fixed in place.
+
+A loaf of bread is on the wooden table. The description is "A somewhat stale loaf of bread. Still edible, probably."
+The loaf of bread is edible.
+
+A ceramic mug is on the wooden table. The description is "A plain ceramic mug. It's empty."
+The ceramic mug is a container. The carrying capacity of the ceramic mug is 1.
+
+Chapter 5 - The Garden
+
+The Garden is south of the Entrance Hall. "A walled garden overgrown with ivy and wildflowers. A stone fountain stands in the center, dry and cracked. A path continues south to a pond."
+
+The stone fountain is scenery in the Garden. The description is "An old fountain carved with fish and waves. No water flows here anymore."
+
+The ivy is scenery in the Garden. The description is "Thick green ivy covers much of the garden walls."
+
+A rusty coin is in the Garden. The description is "An old coin, green with age. Some kind of face is stamped on one side."
+
+After taking the rusty coin for the first time:
+	say "You brush off the grime. Despite its age, the coin has a satisfying weight.";
+	increase the score by 2.
+
+Chapter 6 - The Pond
+
+The Pond is south of the Garden. "A small, murky pond surrounded by reeds and flat stones. The water is still and dark. The garden lies back to the north."
+
+The reeds are scenery in the Pond. The description is "Tall reeds swaying slightly, even though there is no wind."
+
+The flat stones are scenery in the Pond. The description is "Smooth, flat stones line the edge of the pond. One of them looks loose."
+
+A golden ring is nowhere. The description is "A simple gold band that gleams even in dim light."
+
+Instead of pushing the flat stones:
+	if the golden ring is nowhere:
+		now the golden ring is in the Pond;
+		say "You push aside one of the loose stones and discover a golden ring hidden beneath it!";
+		increase the score by 3;
+	otherwise:
+		say "You already found what was hidden here."
+
+Part 3 - Winning
+
+Every turn:
+	if the score is 10:
+		say "[line break][bold type]Congratulations![roman type] You have found all the secrets of this place. You win!";
+		end the story finally saying "You have won".
+</script>
+
+<script>
+/* ==================================================================
+   INIT — deferred until DOM is ready
+   ================================================================== */
+document.addEventListener('DOMContentLoaded', function() {
+  // Check for ?game param — start with source dismissed
+  if (window.location.search.includes('game')) {
+    document.body.classList.add('source-collapsed');
+  }
+
+  var sourceEl = document.getElementById('story-source');
+  var sourceText = sourceEl.textContent;
+  // Remove leading/trailing blank lines from the script block
+  var lines = sourceText.replace(/^\n/, '').replace(/\n$/, '').split('\n');
+
+  renderSource(lines);
+  buildNav(lines);
+  initSearch();
+
+  document.getElementById('line-count').textContent = lines.length + ' lines';
+
+  // Dismiss / show source
+  document.getElementById('btn-dismiss').addEventListener('click', function() {
+    document.body.classList.add('source-collapsed');
+  });
+  document.getElementById('btn-source').addEventListener('click', function() {
+    document.body.classList.remove('source-collapsed');
+  });
+
+  // Ctrl+F shortcut
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+      if (!document.body.classList.contains('source-collapsed')) {
+        e.preventDefault();
+        var input = document.getElementById('search-source');
+        input.focus();
+        input.select();
+      }
+    }
+  });
+});
+
+/* ==================================================================
+   UTILITY
+   ================================================================== */
+function esc(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+/* ==================================================================
+   INFORM 7 SYNTAX HIGHLIGHTER
+   ================================================================== */
+var I7_HEADING = /^(Volume|Book|Part|Chapter|Section)\s+(.+)/;
+
+function highlightInform(line) {
+  if (I7_HEADING.test(line)) return '<span class="syn-head">' + esc(line) + '</span>';
+  if (/^Table\s+/.test(line)) return '<span class="syn-tbl">' + esc(line) + '</span>';
+
+  var out = '', state = 'normal', depth = 0, buf = '';
+
+  function flush(cls) {
+    if (!buf) return;
+    if (cls) out += '<span class="' + cls + '">' + esc(buf) + '</span>';
+    else out += esc(buf);
+    buf = '';
+  }
+
+  for (var i = 0; i < line.length; i++) {
+    var ch = line[i];
+    if (state === 'normal') {
+      if (ch === '"') { flush(); buf = ch; state = 'string'; }
+      else if (ch === '[') { flush(); buf = ch; depth = 1; state = 'comment'; }
+      else buf += ch;
+    } else if (state === 'string') {
+      buf += ch;
+      if (ch === '[') {
+        var before = buf.slice(0, -1);
+        if (before) out += '<span class="syn-str">' + esc(before) + '</span>';
+        buf = ch; state = 'sub'; depth = 1;
+      } else if (ch === '"') { flush('syn-str'); state = 'normal'; }
+    } else if (state === 'sub') {
+      buf += ch;
+      if (ch === '[') depth++;
+      else if (ch === ']') { depth--; if (!depth) { flush('syn-sub'); state = 'string'; } }
+    } else if (state === 'comment') {
+      buf += ch;
+      if (ch === '[') depth++;
+      else if (ch === ']') { depth--; if (!depth) { flush('syn-cmt'); state = 'normal'; } }
+    }
+  }
+
+  if (state === 'string') flush('syn-str');
+  else if (state === 'comment') flush('syn-cmt');
+  else if (state === 'sub') flush('syn-sub');
+  else {
+    if (buf) out += highlightI7Keywords(esc(buf));
+    buf = '';
+  }
+
+  if (state === 'normal' && !out.includes('<span')) return highlightI7Keywords(esc(line));
+  return out;
+}
+
+function highlightI7Keywords(html) {
+  html = html.replace(/\b(Understand|understand|Instead of|Instead|instead of|instead|After|after|Before|before|Check|check|Carry out|carry out|Report|report|Every turn|every turn|When play begins|When|when|Rule|rule|This is|Definition|definition|To say|To decide|To |say |now |let |repeat|if |otherwise|else|end if|end while|end repeat|unless|does the player mean|Persuasion|persuasion|A thing|A room|A person|The )\b/g, '<span class="syn-kw">$1</span>');
+  html = html.replace(/\b(\d+)\b/g, '<span class="syn-num">$1</span>');
+  return html;
+}
+
+/* ==================================================================
+   SOURCE RENDERER
+   ================================================================== */
+function renderSource(lines) {
+  var rows = [];
+  for (var i = 0; i < lines.length; i++) {
+    var num = i + 1;
+    var hm = lines[i].match(I7_HEADING);
+    var cls = hm ? ' class="heading-line"' : '';
+    rows.push('<tr id="L' + num + '"' + cls + '><td class="ln">' + num + '</td><td class="lc">' + highlightInform(lines[i]) + '</td></tr>');
+  }
+  document.getElementById('source-main').innerHTML = '<table class="code">' + rows.join('') + '</table>';
+}
+
+/* ==================================================================
+   NAVIGATION SIDEBAR
+   ================================================================== */
+function buildNav(lines) {
+  var nav = document.getElementById('nav');
+  var items = [];
+  for (var i = 0; i < lines.length; i++) {
+    var hm = lines[i].match(I7_HEADING);
+    if (!hm) continue;
+    var num = i + 1;
+    var lvl = hm[1].toLowerCase();
+    var cls = 'nav-item';
+    if (lvl === 'volume' || lvl === 'book' || lvl === 'part') cls += ' nav-part';
+    else if (lvl === 'chapter') cls += ' nav-chapter';
+    else cls += ' nav-section';
+    items.push('<a class="' + cls + '" data-line="' + num + '">' + esc(lines[i]) + '</a>');
+  }
+  nav.innerHTML = items.join('');
+
+  nav.addEventListener('click', function(e) {
+    var a = e.target.closest('.nav-item');
+    if (!a) return;
+    nav.querySelectorAll('.nav-item').forEach(function(el) { el.classList.remove('active'); });
+    a.classList.add('active');
+    var row = document.getElementById('L' + a.dataset.line);
+    if (row) row.scrollIntoView({ block: 'start' });
+  });
+}
+
+/* ==================================================================
+   SEARCH
+   ================================================================== */
+function initSearch() {
+  var input = document.getElementById('search-source');
+  var wrap = document.getElementById('source-main');
+  var hits = [], cur = -1, debounce;
+
+  function clearHits() {
+    wrap.querySelectorAll('.search-hit').forEach(function(el) { el.outerHTML = el.textContent; });
+    hits = []; cur = -1;
+  }
+
+  function doSearch(q) {
+    clearHits();
+    if (!q || q.length < 2) return;
+    var lower = q.toLowerCase();
+    wrap.querySelectorAll('td.lc').forEach(function(td) {
+      if (td.textContent.toLowerCase().includes(lower)) markMatches(td, q);
+    });
+    hits = Array.from(wrap.querySelectorAll('.search-hit'));
+    if (hits.length) {
+      cur = 0;
+      hits[0].classList.add('search-current');
+      hits[0].scrollIntoView({ block: 'center' });
+    }
+  }
+
+  function markMatches(el, q) {
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    var lower = q.toLowerCase();
+    nodes.forEach(function(node) {
+      var text = node.textContent, idx = text.toLowerCase().indexOf(lower);
+      if (idx === -1) return;
+      var span = document.createElement('span');
+      span.className = 'search-hit';
+      span.textContent = text.slice(idx, idx + q.length);
+      var parent = node.parentNode;
+      if (idx > 0) parent.insertBefore(document.createTextNode(text.slice(0, idx)), node);
+      parent.insertBefore(span, node);
+      var after = text.slice(idx + q.length);
+      if (after) parent.insertBefore(document.createTextNode(after), node);
+      parent.removeChild(node);
+    });
+  }
+
+  function next() {
+    if (!hits.length) return;
+    hits[cur].classList.remove('search-current');
+    cur = (cur + 1) % hits.length;
+    hits[cur].classList.add('search-current');
+    hits[cur].scrollIntoView({ block: 'center' });
+  }
+
+  function prev() {
+    if (!hits.length) return;
+    hits[cur].classList.remove('search-current');
+    cur = (cur - 1 + hits.length) % hits.length;
+    hits[cur].classList.add('search-current');
+    hits[cur].scrollIntoView({ block: 'center' });
+  }
+
+  input.addEventListener('input', function() {
+    clearTimeout(debounce);
+    var self = this;
+    debounce = setTimeout(function() { doSearch(self.value); }, 200);
+  });
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); e.shiftKey ? prev() : next(); }
+    if (e.key === 'Escape') { clearHits(); this.value = ''; this.blur(); }
+  });
+}
+</script>
+
+</body>
+</html>
