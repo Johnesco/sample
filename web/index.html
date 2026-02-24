@@ -18,13 +18,14 @@ html, body {
 
 body {
   display: grid;
-  grid-template-columns: 1fr minmax(300px, 45%);
+  grid-template-columns: 1fr 5px minmax(300px, 45%);
 }
 
 body.source-collapsed {
   grid-template-columns: 1fr;
 }
 
+body.source-collapsed #resize-handle,
 body.source-collapsed #source-pane {
   display: none;
 }
@@ -230,6 +231,28 @@ tr:target td.ln, tr.highlight td.ln { color: #806050; }
   outline: 1px solid #aa8030;
 }
 
+/* --- Resize Handle --- */
+#resize-handle {
+  width: 5px;
+  cursor: col-resize;
+  background: #1a1810;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+#resize-handle:hover,
+#resize-handle.dragging {
+  background: #3a3020;
+}
+
+body.source-collapsed #resize-handle {
+  display: none;
+}
+
+body.resizing iframe {
+  pointer-events: none;
+}
+
 /* --- Game Pane --- */
 #game-pane {
   display: flex;
@@ -285,7 +308,7 @@ tr:target td.ln, tr.highlight td.ln { color: #806050; }
 /* --- Responsive --- */
 @media (max-width: 1024px) {
   body {
-    grid-template-columns: 1fr 40%;
+    grid-template-columns: 1fr 5px 40%;
   }
   .sidebar { display: none; }
 }
@@ -300,6 +323,7 @@ tr:target td.ln, tr.highlight td.ln { color: #806050; }
     grid-template-rows: 1fr;
   }
 
+  #resize-handle { display: none; }
   .sidebar { display: none; }
 }
 </style>
@@ -315,6 +339,9 @@ tr:target td.ln, tr.highlight td.ln { color: #806050; }
   </div>
   <iframe id="game-frame" src="play.html" title="Sample — Interactive Fiction"></iframe>
 </div>
+
+<!-- ===== RESIZE HANDLE ===== -->
+<div id="resize-handle"></div>
 
 <!-- ===== SOURCE PANE ===== -->
 <div id="source-pane">
@@ -500,6 +527,39 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   });
+
+  // Resize handle drag
+  var handle = document.getElementById('resize-handle');
+  handle.addEventListener('mousedown', startResize);
+  handle.addEventListener('touchstart', startResize, { passive: false });
+
+  function startResize(e) {
+    e.preventDefault();
+    handle.classList.add('dragging');
+    document.body.classList.add('resizing');
+
+    var onMove = function(e) {
+      var x = e.touches ? e.touches[0].clientX : e.clientX;
+      var w = document.body.clientWidth;
+      var gameW = Math.max(200, Math.min(x, w - 200));
+      var sourceW = w - gameW - 5;
+      document.body.style.gridTemplateColumns = gameW + 'px 5px ' + sourceW + 'px';
+    };
+
+    var onUp = function() {
+      handle.classList.remove('dragging');
+      document.body.classList.remove('resizing');
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+      document.removeEventListener('touchmove', onMove);
+      document.removeEventListener('touchend', onUp);
+    };
+
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+    document.addEventListener('touchmove', onMove, { passive: false });
+    document.addEventListener('touchend', onUp);
+  }
 });
 
 /* ==================================================================
