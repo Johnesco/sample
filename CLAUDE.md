@@ -5,7 +5,7 @@ A local-only Inform 7 project for practicing rooms, objects, and interactions vi
 ## Project Structure
 
 ```
-C:\code\i7\sample\
+C:\code\ifhub\projects\sample\
 ├── CLAUDE.md              ← You are here
 ├── story.ni               ← Source of truth (Inform 7 source)
 ├── sample.ulx             ← Compiled Glulx binary (build output)
@@ -26,12 +26,12 @@ C:\code\i7\sample\
 
 ## Shared Resources
 
-- **Inform 7 hub**: `C:\code\i7\inform7\CLAUDE.md` — syntax guides, compiler docs, testing framework
-- **Syntax reference**: `C:\code\i7\inform7\reference\syntax-guide.md`
-- **Text formatting**: `C:\code\i7\inform7\reference\text-formatting.md`
-- **Testing framework**: `C:\code\i7\inform7\tools\testing\` — generic scripts driven by `project.conf`
-- **RegTest runner**: `C:\code\i7\inform7\tools\regtest.py`
-- **Web player setup**: `C:\code\i7\inform7\tools\web\` — Parchment libraries, template, setup script
+- **Inform 7 hub**: `C:\code\ifhub\CLAUDE.md` — syntax guides, compiler docs, testing framework
+- **Syntax reference**: `C:\code\ifhub\reference\syntax-guide.md`
+- **Text formatting**: `C:\code\ifhub\reference\text-formatting.md`
+- **Testing framework**: `C:\code\ifhub\tools\testing\` — generic scripts driven by `project.conf`
+- **RegTest runner**: `C:\code\ifhub\tools\regtest.py`
+- **Web player setup**: `C:\code\ifhub\tools\web\` — Parchment libraries, template, setup script
 
 ## Building
 
@@ -71,7 +71,7 @@ After recompiling, always re-run the base64 step (Step 4) to update the web bina
 
 ## Testing
 
-All test scripts run via WSL and delegate to the shared framework at `C:\code\i7\inform7\tools\testing\`.
+All test scripts run via WSL and delegate to the shared framework at `C:\code\ifhub\tools\testing\`.
 
 ```bash
 # Run walkthrough
@@ -95,4 +95,4 @@ wsl -e bash tests/find-seeds.sh
 - This is a **local-only** project — no git, no GitHub, no SDLC workflow
 - `story.ni` is the single source of truth
 - Do NOT create `.inform/` IDE bundles
-- For Inform 7 syntax and conventions, see `C:\code\i7\inform7\CLAUDE.md`
+- For Inform 7 syntax and conventions, see `C:\code\ifhub\CLAUDE.md`
