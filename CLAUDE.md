@@ -30,31 +30,19 @@ C:\code\ifhub\projects\sample\
 - **Syntax reference**: `C:\code\ifhub\reference\syntax-guide.md`
 - **Text formatting**: `C:\code\ifhub\reference\text-formatting.md`
 - **Testing framework**: `C:\code\ifhub\tools\testing\` — generic scripts driven by `project.conf`
+- **Native interpreters**: `C:\code\ifhub\tools\interpreters\` — `glulxe.exe`, `dfrotz.exe` (build with `build.sh` in MSYS2)
 - **RegTest runner**: `C:\code\ifhub\tools\regtest.py`
 - **Web player setup**: `C:\code\ifhub\tools\web\` — Parchment libraries, template, setup script
+- **Pipeline**: `C:\code\ifhub\tools\pipeline.sh` — compile → test → deploy orchestrator
 
 ## Building
 
-CLI compilation (no `.inform` IDE bundle needed):
-
 ```bash
-# Step 1: Compile I7 → I6
-"/c/Program Files/Inform7IDE/Compilers/inform7.exe" \
-    -internal "/c/Program Files/Inform7IDE/Internal" \
-    -source story.ni \
-    -o story.i6 \
-    -silence
+# Compile + update web player (recommended)
+bash /c/code/ifhub/tools/compile.sh sample
 
-# Step 2: Compile I6 → Glulx
-"/c/Program Files/Inform7IDE/Compilers/inform6.exe" -w -G \
-    story.i6 \
-    sample.ulx
-
-# Step 3: Clean up intermediate file
-rm story.i6
-
-# Step 4: Update web player binary
-B64=$(base64 -w 0 sample.ulx) && echo "processBase64Zcode('${B64}')" > web/lib/parchment/sample.ulx.js
+# Or via pipeline (compile + test + deploy to hub)
+bash /c/code/ifhub/tools/pipeline.sh sample compile test deploy
 ```
 
 ## Web Player
@@ -71,17 +59,20 @@ After recompiling, always re-run the base64 step (Step 4) to update the web bina
 
 ## Testing
 
-All test scripts run via WSL and delegate to the shared framework at `C:\code\ifhub\tools\testing\`.
+Test scripts delegate to the shared framework at `C:\code\ifhub\tools\testing\`. Platform detection in `project.conf` auto-selects native `glulxe.exe` (Git Bash) or WSL `glulxe` (Linux).
 
 ```bash
-# Run walkthrough
-wsl -e bash tests/run-walkthrough.sh
+# Run walkthrough (native — no WSL needed if interpreters are built)
+bash tests/run-walkthrough.sh
 
 # Run regression tests
-wsl -e bash tests/run-tests.sh
+bash tests/run-tests.sh
 
 # Find golden seeds
-wsl -e bash tests/find-seeds.sh
+bash tests/find-seeds.sh
+
+# Or via pipeline
+bash /c/code/ifhub/tools/pipeline.sh sample compile test
 ```
 
 ## Game Overview
