@@ -1,6 +1,6 @@
 # Sample — An Inform 7 Practice Game
 
-A local-only Inform 7 project for practicing rooms, objects, and interactions via CLI workflow.
+An Inform 7 project for practicing rooms, objects, and interactions. Published to GitHub Pages at `johnesco.github.io/sample/`.
 
 ## Project Structure
 
@@ -9,9 +9,11 @@ C:\code\ifhub\projects\sample\
 ├── CLAUDE.md              ← You are here
 ├── story.ni               ← Source of truth (Inform 7 source)
 ├── sample.ulx             ← Compiled Glulx binary (build output)
-├── web/
-│   ├── play.html          ← Browser-playable game (Parchment player)
-│   └── lib/parchment/     ← Parchment JS libraries + sample.ulx.js (base64 binary)
+├── index.html             ← Landing page
+├── play.html              ← Browser-playable game (Parchment player)
+├── source.html            ← Source browser
+├── walkthrough.html       ← Walkthrough viewer
+├── lib/parchment/         ← Parchment JS libraries + sample.ulx.js (base64 binary)
 └── tests/
     ├── project.conf       ← Project-specific test configuration
     ├── run-tests.sh       ← RegTest runner (wrapper)
@@ -24,6 +26,12 @@ C:\code\ifhub\projects\sample\
         └── walkthrough_output.txt ← Generated transcript
 ```
 
+## GitHub Repository
+
+- **Repo**: `Johnesco/sample`
+- **GitHub Pages**: `johnesco.github.io/sample/`
+- **IF Hub**: Served in-place — the hub iframes pages directly from GitHub Pages
+
 ## Shared Resources
 
 - **Inform 7 hub**: `C:\code\ifhub\CLAUDE.md` — syntax guides, compiler docs, testing framework
@@ -33,7 +41,7 @@ C:\code\ifhub\projects\sample\
 - **Native interpreters**: `C:\code\ifhub\tools\interpreters\` — `glulxe.exe`, `dfrotz.exe` (build with `build.sh` in MSYS2)
 - **RegTest runner**: `C:\code\ifhub\tools\regtest.py`
 - **Web player setup**: `C:\code\ifhub\tools\web\` — Parchment libraries, template, setup script
-- **Pipeline**: `C:\code\ifhub\tools\pipeline.sh` — compile → test → deploy orchestrator
+- **Pipeline**: `C:\code\ifhub\tools\pipeline.sh` — compile → test → push orchestrator
 
 ## Building
 
@@ -41,21 +49,21 @@ C:\code\ifhub\projects\sample\
 # Compile + update web player (recommended)
 bash /c/code/ifhub/tools/compile.sh sample
 
-# Or via pipeline (compile + test + deploy to hub)
-bash /c/code/ifhub/tools/pipeline.sh sample compile test deploy
+# Or via pipeline (compile + test)
+bash /c/code/ifhub/tools/pipeline.sh sample compile test
 ```
 
 ## Web Player
 
-Open `web/play.html` in a browser to play. Uses Parchment (JS Glulx interpreter).
+Open `play.html` in a browser to play. Uses Parchment (JS Glulx interpreter).
 
 To serve locally (avoids file:// CORS issues):
 ```bash
-python -m http.server 8000 --directory web
-# Then open http://localhost:8000/play.html
+python /c/code/ifhub/tools/dev-server.py
+# Then open http://127.0.0.1:8000/sample/play.html
 ```
 
-After recompiling, always re-run the base64 step (Step 4) to update the web binary.
+After recompiling, the compile script automatically updates the web binary.
 
 ## Testing
 
@@ -83,7 +91,6 @@ bash /c/code/ifhub/tools/pipeline.sh sample compile test
 
 ## Key Rules
 
-- This is a **local-only** project — no git, no GitHub, no SDLC workflow
 - `story.ni` is the single source of truth
 - Do NOT create `.inform/` IDE bundles
 - For Inform 7 syntax and conventions, see `C:\code\ifhub\CLAUDE.md`

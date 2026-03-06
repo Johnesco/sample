@@ -105,6 +105,8 @@ The reeds are scenery in the Pond. The description is "Tall reeds swaying slight
 
 The flat stones are scenery in the Pond. The description is "Smooth, flat stones line the edge of the pond. One of them looks loose."
 
+Understand "stone" and "stones" and "rock" and "rocks" as the flat stones.
+
 A golden ring is nowhere. The description is "A simple gold band that gleams even in dim light."
 
 Instead of pushing the flat stones:
