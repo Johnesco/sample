@@ -23,8 +23,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp *.html _site/ 2>/dev/null || true
+          cp *.txt _site/ 2>/dev/null || true
+          cp story.ni _site/ 2>/dev/null || true
+          [ -d lib ] && cp -r lib _site/lib
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: web
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

@@ -1,4 +1,4 @@
-# Build output
+# Compiled Inform 7 game (large binary, rebuild from story.ni)
 *.ulx
 *.i6
 *.materials/
