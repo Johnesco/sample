@@ -1,9 +1,15 @@
+# Auto-generated walkthrough guide
+
+# Pick up the brass key
 > take brass key
 
 ## Library
 
 > n
+
 # +2 points
+# You flip through the journal. Most entries are illegible, but one page
+#   reads: "The treasure is hidden where water meets stone."
 > open journal
 
 ## Entrance Hall
@@ -13,14 +19,20 @@
 ## Garden
 
 > s
+
 # +2 points
+# You brush off the grime. Despite its age, the coin has a satisfying weight.
 > take rusty coin
 
 ## Pond
 
 > s
+
 # +3 points
+# You push aside one of the loose stones and discover a golden ring hidden
+#   beneath it!
 > push flat stones
+# Pick up the golden ring
 > take golden ring
 
 ## Garden
@@ -38,7 +50,15 @@
 ## Study
 
 > up
+
+# Unlock the cabinet
+# You unlock the wooden cabinet.
 > unlock cabinet with brass key
+# Open the cabinet
+# You open the wooden cabinet, revealing a silver locket.
 > open cabinet
 # GAME WON
+# As you pick up the locket, it glows faintly. You feel a sense of
+#   accomplishment. Congratulations! You have found all the secrets of this
+#   place.
 > take silver locket
