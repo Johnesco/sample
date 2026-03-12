@@ -4,7 +4,7 @@
 
 Sample
 An Interactive Fiction by Claude Code
-Release 1 / Serial number 260310 / Inform 7 v10.1.2 / D
+Release 1 / Serial number 260311 / Inform 7 v10.1.2 / D
 A practice game for learning Inform 7.
 
 Entrance Hall

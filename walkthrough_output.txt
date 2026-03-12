@@ -4,7 +4,7 @@
 
 Sample
 An Interactive Fiction by Claude Code
-Release 1 / Serial number 260310 / Inform 7 v10.1.2 / D
+Release 1 / Serial number 260311 / Inform 7 v10.1.2 / D
 A practice game for learning Inform 7.
 
 Entrance Hall
@@ -84,9 +84,6 @@ Congratulations! You have found all the secrets of this place. You win!
 
 In that game you scored 10 out of a possible 10, in 16 turns, earning you the rank of Winner.
 
-
-Would you like to RESTART, RESTORE a saved game, QUIT or UNDO the last command?
-> Please give one of the answers above.
 
 Would you like to RESTART, RESTORE a saved game, QUIT or UNDO the last command?
 > 
