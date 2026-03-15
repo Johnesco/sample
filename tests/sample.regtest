@@ -49,6 +49,46 @@ flat stones
 > push flat stones
 golden ring
 
+* verb-help-verbs
+> verbs
+Movement:
+Looking:
+Taking:
+Using:
+Meta:
+
+* verb-help-help
+> help
+text adventure
+VERB NOUN
+VERBS
+
+* verb-help-parser-error
+> flurble
+don't know that command
+
+* verb-help-synonym-examine
+> inspect chandelier
+ornate chandelier
+
+* verb-help-synonym-take
+> grab brass key
+Taken
+
+* verb-help-use-alone
+> use brass key
+How do you want to use
+
+* verb-help-use-on
+> take brass key
+Taken
+> n
+Library
+> up
+Study
+> use brass key on wooden cabinet
+You unlock
+
 * full-walkthrough
 {vital}
 > take brass key
