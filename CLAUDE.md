@@ -1,93 +1,13 @@
 # Sample — An Inform 7 Practice Game
 
-An Inform 7 project for practicing rooms, objects, and interactions. Published to GitHub Pages at `johnesco.github.io/sample/`.
+An Inform 7 project for practicing rooms, objects, and interactions.
 
-## Project Structure
+- **Repo**: `Johnesco/sample` — `johnesco.github.io/sample/`
 
-```
-C:\code\ifhub\projects\sample\
-├── CLAUDE.md              ← You are here
-├── story.ni               ← Source of truth (Inform 7 source)
-├── sample.ulx             ← Compiled Glulx binary (build output)
-├── index.html             ← Landing page
-├── play.html              ← Browser-playable game (Parchment player)
-├── source.html            ← Source browser
-├── walkthrough.html       ← Walkthrough viewer
-├── lib/parchment/         ← Parchment JS libraries + sample.ulx.js (base64 binary)
-└── tests/
-    ├── project.conf       ← Project-specific test configuration
-    ├── seeds.conf         ← Golden seeds for deterministic testing
-    ├── sample.regtest     ← RegTest regression test suite
-    └── inform7/
-        ├── walkthrough.txt        ← Walkthrough commands
-        └── walkthrough_output.txt ← Generated transcript
-```
-
-## GitHub Repository
-
-- **Repo**: `Johnesco/sample`
-- **GitHub Pages**: `johnesco.github.io/sample/`
-- **IF Hub**: Served in-place — the hub iframes pages directly from GitHub Pages
-
-## Shared Resources
-
-- **Inform 7 hub**: `C:\code\ifhub\CLAUDE.md` — syntax guides, compiler docs, testing framework
-- **Syntax reference**: `C:\code\ifhub\reference\syntax-guide.md`
-- **Text formatting**: `C:\code\ifhub\reference\text-formatting.md`
-- **Testing framework**: `C:\code\ifhub\tools\testing\` — generic scripts driven by `project.conf`
-- **Native interpreters**: `C:\code\ifhub\tools\interpreters\` — `glulxe.exe`, `dfrotz.exe` (build with `build.sh` in MSYS2)
-- **RegTest runner**: `C:\code\ifhub\tools\regtest.py`
-- **Web player setup**: `C:\code\ifhub\tools\web\` — Parchment libraries, template, setup script
-- **Pipeline**: `C:\code\ifhub\tools\pipeline.py` — compile → test → push orchestrator
-
-## Building
-
-```bash
-# Compile + update web player (recommended)
-python /c/code/ifhub/tools/compile.py sample
-
-# Or via pipeline (compile + test)
-python /c/code/ifhub/tools/pipeline.py sample compile test
-```
-
-## Web Player
-
-Open `play.html` in a browser to play. Uses Parchment (JS Glulx interpreter).
-
-To serve locally (avoids file:// CORS issues):
-```bash
-python /c/code/ifhub/tools/dev_server.py
-# Then open http://127.0.0.1:8000/sample/play.html
-```
-
-After recompiling, the compile script automatically updates the web binary.
-
-## Testing
-
-Tests use the shared framework at `C:\code\ifhub\tools\testing\`. Platform detection in `project.conf` auto-selects native `glulxe.exe` (Git Bash) or WSL `glulxe` (Linux).
-
-```bash
-# Run walkthrough (native — no WSL needed if interpreters are built)
-python /c/code/ifhub/tools/testing/run_walkthrough.py --config tests/project.conf
-
-# Run regression tests
-python /c/code/ifhub/tools/testing/run_tests.py --config tests/project.conf
-
-# Find golden seeds
-python /c/code/ifhub/tools/testing/find_seeds.py --config tests/project.conf
-
-# Or via pipeline
-python /c/code/ifhub/tools/pipeline.py sample compile test
-```
+For build, test, and publish workflows, see `C:\code\ifhub\reference\project-guide.md`.
 
 ## Game Overview
 
 - **Max score**: 10 points
 - **Rooms**: Entrance Hall, Library, Study, Kitchen, Garden, Pond
 - **Scoring**: Open journal (2) + take coin (2) + push stones / find ring (3) + take locket (3)
-
-## Key Rules
-
-- `story.ni` is the single source of truth
-- Do NOT create `.inform/` IDE bundles
-- For Inform 7 syntax and conventions, see `C:\code\ifhub\CLAUDE.md`
