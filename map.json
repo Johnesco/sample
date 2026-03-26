@@ -1,0 +1,113 @@
+{
+  "title": "Sample",
+  "startRoom": "entrance-hall",
+  "rooms": [
+    {
+      "id": "entrance-hall",
+      "name": "Entrance Hall",
+      "description": "A grand hall with marble floors and high ceilings. A crystal chandelier hangs overhead. Exits lead north to a library, east to a kitchen, and south to a garden.",
+      "visits": 3,
+      "x": 0,
+      "y": 2,
+      "cx": 80,
+      "cy": 300
+    },
+    {
+      "id": "library",
+      "name": "Library",
+      "description": "Tall bookshelves line every wall, crammed with leather-bound volumes. A reading desk sits in the center of the room. A narrow staircase leads up.",
+      "visits": 2,
+      "x": 0,
+      "y": 1,
+      "cx": 80,
+      "cy": 180
+    },
+    {
+      "id": "garden",
+      "name": "Garden",
+      "description": "A walled garden overgrown with ivy and wildflowers. A stone fountain stands in the center, dry and cracked. A path continues south to a pond.",
+      "visits": 2,
+      "x": 0,
+      "y": 3,
+      "cx": 80,
+      "cy": 420
+    },
+    {
+      "id": "pond",
+      "name": "Pond",
+      "description": "A small, murky pond surrounded by reeds and flat stones. The water is still and dark. The garden lies back to the north.",
+      "visits": 1,
+      "x": 0,
+      "y": 4,
+      "cx": 80,
+      "cy": 540
+    },
+    {
+      "id": "study",
+      "name": "Study",
+      "description": "A cozy room at the top of the narrow staircase. A wooden cabinet stands against one wall. The only exit is back down.",
+      "visits": 1,
+      "x": 0,
+      "y": 0,
+      "cx": 80,
+      "cy": 60
+    }
+  ],
+  "edges": [
+    {
+      "from": "entrance-hall",
+      "to": "library",
+      "direction": "n",
+      "isStandard": true,
+      "bidirectional": true
+    },
+    {
+      "from": "library",
+      "to": "entrance-hall",
+      "direction": "s",
+      "isStandard": true,
+      "bidirectional": true
+    },
+    {
+      "from": "entrance-hall",
+      "to": "garden",
+      "direction": "s",
+      "isStandard": true,
+      "bidirectional": true
+    },
+    {
+      "from": "garden",
+      "to": "pond",
+      "direction": "s",
+      "isStandard": true,
+      "bidirectional": true
+    },
+    {
+      "from": "pond",
+      "to": "garden",
+      "direction": "n",
+      "isStandard": true,
+      "bidirectional": true
+    },
+    {
+      "from": "garden",
+      "to": "entrance-hall",
+      "direction": "n",
+      "isStandard": true,
+      "bidirectional": true
+    },
+    {
+      "from": "library",
+      "to": "study",
+      "direction": "u",
+      "isStandard": true,
+      "bidirectional": false
+    }
+  ],
+  "viewBox": [
+    -45,
+    -22,
+    250,
+    644
+  ]
+}
