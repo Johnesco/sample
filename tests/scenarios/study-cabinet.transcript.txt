@@ -1,0 +1,55 @@
+
+
+
+
+Sample
+An Interactive Fiction by Claude Code
+Release 1 / Serial number 260322 / Inform 7 v10.1.2 / D
+A practice game for learning Inform 7.
+
+Entrance Hall
+A grand hall with marble floors and high ceilings. A crystal chandelier hangs overhead. Exits lead north to a library, east to a kitchen, and south to a garden.
+
+You can see a brass key here.
+
+
+> take brass key
+Taken.
+
+
+> n
+
+Library
+Tall bookshelves line every wall, crammed with leather-bound volumes. A reading desk sits in the center of the room. A narrow staircase leads up.
+
+You can see a reading desk (on which is a dusty journal) here.
+
+
+> up
+
+Study
+A cozy room at the top of the narrow staircase. A wooden cabinet stands against one wall. The only exit is back down.
+
+You can see a wooden cabinet (closed) here.
+
+
+> unlock cabinet with brass key
+You unlock the wooden cabinet.
+
+
+> open cabinet
+You open the wooden cabinet, revealing a silver locket.
+
+
+> take silver locket
+As you pick up the locket, it glows faintly. You feel a sense of accomplishment.
+
+[Your score has just gone up by three points.]
+
+
+> score
+You have so far scored 3 out of a possible 10, in 7 turns, earning you the rank of Beginner.
+
+
+> quit
+Are you sure you want to quit? 

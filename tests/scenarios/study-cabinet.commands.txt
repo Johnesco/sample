@@ -1,0 +1,6 @@
+take brass key
+n
+up
+unlock cabinet with brass key
+open cabinet
+take silver locket

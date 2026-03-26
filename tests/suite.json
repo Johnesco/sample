@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "game": "sample",
+  "layers": {
+    "plotex":     { "enabled": false },
+    "ingame":     { "enabled": false, "tests": ["me", "help", "examine", "use", "errors", "synonyms"] },
+    "scenarios":  {
+      "enabled": true,
+      "regtest_file": "sample.regtest",
+      "categories": {
+        "smoke":      { "seed_sensitive": false },
+        "puzzles":    { "seed_sensitive": false },
+        "verb-help":  { "seed_sensitive": false }
+      }
+    },
+    "browser":    { "enabled": false }
+  },
+  "coverage": {
+    "rooms_total": 5,
+    "items_total": 4,
+    "puzzles_total": 3,
+    "deaths_known": 0,
+    "score_max": 5
+  }
+}

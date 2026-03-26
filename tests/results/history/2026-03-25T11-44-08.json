@@ -1,0 +1,30 @@
+{
+  "game": "sample",
+  "timestamp": "2026-03-25T16:44:08+00:00",
+  "binary_hash": "749a6852",
+  "duration_seconds": 1.1,
+  "layers": {
+    "plotex": {
+      "status": "skip",
+      "detail": "not configured"
+    },
+    "regtest": {
+      "status": "pass",
+      "detail": "all assertions passed"
+    },
+    "scenarios": {
+      "status": "pass",
+      "total": 14,
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "wins": 1,
+      "win_scenarios": [
+        "full-walkthrough"
+      ],
+      "duration": 0.4,
+      "primary_walkthrough": "full-walkthrough"
+    }
+  },
+  "overall": "pass"
+}

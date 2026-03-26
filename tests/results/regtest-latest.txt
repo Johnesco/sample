@@ -1,0 +1,14 @@
+* smoke
+* take-key
+* library-journal
+* study-cabinet
+* garden-coin
+* pond-ring
+* verb-help-verbs
+* verb-help-help
+* verb-help-parser-error
+* verb-help-synonym-examine
+* verb-help-synonym-take
+* verb-help-use-alone
+* verb-help-use-on
+* full-walkthrough

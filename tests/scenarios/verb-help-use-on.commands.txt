@@ -1,0 +1,4 @@
+take brass key
+n
+up
+use brass key on wooden cabinet

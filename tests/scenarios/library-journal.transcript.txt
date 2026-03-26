@@ -1,0 +1,35 @@
+
+
+
+
+Sample
+An Interactive Fiction by Claude Code
+Release 1 / Serial number 260322 / Inform 7 v10.1.2 / D
+A practice game for learning Inform 7.
+
+Entrance Hall
+A grand hall with marble floors and high ceilings. A crystal chandelier hangs overhead. Exits lead north to a library, east to a kitchen, and south to a garden.
+
+You can see a brass key here.
+
+
+> n
+
+Library
+Tall bookshelves line every wall, crammed with leather-bound volumes. A reading desk sits in the center of the room. A narrow staircase leads up.
+
+You can see a reading desk (on which is a dusty journal) here.
+
+
+> open journal
+You flip through the journal. Most entries are illegible, but one page reads: "The treasure is hidden where water meets stone."
+
+[Your score has just gone up by two points.]
+
+
+> score
+You have so far scored 2 out of a possible 10, in 3 turns, earning you the rank of Beginner.
+
+
+> quit
+Are you sure you want to quit? 

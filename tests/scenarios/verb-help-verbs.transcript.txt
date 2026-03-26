@@ -1,0 +1,30 @@
+
+
+
+
+Sample
+An Interactive Fiction by Claude Code
+Release 1 / Serial number 260322 / Inform 7 v10.1.2 / D
+A practice game for learning Inform 7.
+
+Entrance Hall
+A grand hall with marble floors and high ceilings. A crystal chandelier hangs overhead. Exits lead north to a library, east to a kitchen, and south to a garden.
+
+You can see a brass key here.
+
+
+> verbs
+Movement:  NORTH (N), SOUTH (S), EAST (E), WEST (W), UP (U), DOWN (D), IN, OUT
+Looking:   LOOK (L), EXAMINE (X) thing, SEARCH thing, LOOK IN/UNDER thing
+Taking:    TAKE thing, DROP thing, PUT thing IN/ON thing, GIVE thing TO person
+Using:     OPEN, CLOSE, LOCK/UNLOCK thing WITH key, PUSH, PULL, TURN ON/OFF
+Talking:   ASK person ABOUT topic, TELL person ABOUT topic, SAY "text"
+Self:      INVENTORY (I), WAIT (Z), WEAR thing, EAT/DRINK thing
+Meta:      SAVE, RESTORE, UNDO, SCORE, HELP, VERBS, RESTART, QUIT
+
+> score
+You have so far scored 0 out of a possible 10, in 1 turn, earning you the rank of Beginner.
+
+
+> quit
+Are you sure you want to quit? 

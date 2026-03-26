@@ -1,0 +1,18 @@
+{
+  "scenarios": [
+    { "name": "smoke", "title": "Entrance Hall Smoke Test", "category": "Smoke Tests" },
+    { "name": "take-key", "title": "Take Brass Key", "category": "Smoke Tests" },
+    { "name": "library-journal", "title": "Library Journal", "category": "Puzzles" },
+    { "name": "study-cabinet", "title": "Unlock Study Cabinet", "category": "Puzzles" },
+    { "name": "garden-coin", "title": "Garden Rusty Coin", "category": "Puzzles" },
+    { "name": "pond-ring", "title": "Pond Golden Ring", "category": "Puzzles" },
+    { "name": "verb-help-verbs", "title": "Verbs Command", "category": "Verb Help" },
+    { "name": "verb-help-help", "title": "Help Command", "category": "Verb Help" },
+    { "name": "verb-help-parser-error", "title": "Parser Error Handling", "category": "Verb Help" },
+    { "name": "verb-help-synonym-examine", "title": "Examine Synonyms", "category": "Verb Help" },
+    { "name": "verb-help-synonym-take", "title": "Take Synonyms", "category": "Verb Help" },
+    { "name": "verb-help-use-alone", "title": "Use Without Target", "category": "Verb Help" },
+    { "name": "verb-help-use-on", "title": "Use Key On Cabinet", "category": "Verb Help" },
+    { "name": "full-walkthrough", "title": "Complete Walkthrough", "category": "Win Paths", "primary": true }
+  ]
+}
