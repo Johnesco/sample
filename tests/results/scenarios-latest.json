@@ -1,8 +1,8 @@
 {
   "game": "sample",
-  "regtest_file": "sample/tests/sample.regtest",
+  "scenario_file": "C:\\code\\text-games\\i7\\sample\\tests\\sample.scenario",
   "seed": "1",
-  "duration_seconds": 0.3,
+  "duration_seconds": 0.4,
   "total": 14,
   "passed": 14,
   "failed": 0,
@@ -12,16 +12,50 @@
     "full-walkthrough"
   ],
   "primary": "full-walkthrough",
+  "assertions": {
+    "total": 48,
+    "passed": 48,
+    "failed": 0
+  },
   "scenarios": [
     {
       "name": "smoke",
-      "commands": 1,
-      "transcript_lines": 28,
-      "exit_code": 0,
-      "output_file": "sample\\tests\\scenarios\\smoke.transcript.txt",
-      "commands_file": "sample\\tests\\scenarios\\smoke.commands.txt",
-      "seed": "1",
       "status": "pass",
+      "seed": "1",
+      "commands": 1,
+      "transcript_lines": 24,
+      "exit_code": 0,
+      "transcript_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\smoke.transcript.txt",
+      "commands_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\smoke.commands.txt",
+      "assertions": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "failures": [],
+        "details": [
+          {
+            "check": "Entrance Hall",
+            "command": "look",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Entrance Hall\nA grand hall with marble floors and high ceilings. A crystal chandelier hangs overhead. Exits lead north to a library, east to a kitchen, and south to a garden.\n\nYou can see a brass key here."
+          },
+          {
+            "check": "crystal chandelier",
+            "command": "look",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Entrance Hall\nA grand hall with marble floors and high ceilings. A crystal chandelier hangs overhead. Exits lead north to a library, east to a kitchen, and south to a garden.\n\nYou can see a brass key here."
+          },
+          {
+            "check": "brass key",
+            "command": "look",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Entrance Hall\nA grand hall with marble floors and high ceilings. A crystal chandelier hangs overhead. Exits lead north to a library, east to a kitchen, and south to a garden.\n\nYou can see a brass key here."
+          }
+        ]
+      },
       "score": "0/10",
       "win": false,
       "won_text": false,
@@ -38,13 +72,28 @@
     },
     {
       "name": "take-key",
-      "commands": 1,
-      "transcript_lines": 25,
-      "exit_code": 0,
-      "output_file": "sample\\tests\\scenarios\\take-key.transcript.txt",
-      "commands_file": "sample\\tests\\scenarios\\take-key.commands.txt",
-      "seed": "1",
       "status": "pass",
+      "seed": "1",
+      "commands": 1,
+      "transcript_lines": 21,
+      "exit_code": 0,
+      "transcript_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\take-key.transcript.txt",
+      "commands_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\take-key.commands.txt",
+      "assertions": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "failures": [],
+        "details": [
+          {
+            "check": "Taken",
+            "command": "take brass key",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Taken."
+          }
+        ]
+      },
       "score": "0/10",
       "win": false,
       "won_text": false,
@@ -61,13 +110,49 @@
     },
     {
       "name": "library-journal",
-      "commands": 2,
-      "transcript_lines": 35,
-      "exit_code": 0,
-      "output_file": "sample\\tests\\scenarios\\library-journal.transcript.txt",
-      "commands_file": "sample\\tests\\scenarios\\library-journal.commands.txt",
-      "seed": "1",
       "status": "pass",
+      "seed": "1",
+      "commands": 2,
+      "transcript_lines": 31,
+      "exit_code": 0,
+      "transcript_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\library-journal.transcript.txt",
+      "commands_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\library-journal.commands.txt",
+      "assertions": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "failures": [],
+        "details": [
+          {
+            "check": "Library",
+            "command": "n",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Library\nTall bookshelves line every wall, crammed with leather-bound volumes. A reading desk sits in the center of the room. A narrow staircase leads up.\n\nYou can see a reading desk (on which is a dusty journal) here."
+          },
+          {
+            "check": "bookshelves",
+            "command": "n",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Library\nTall bookshelves line every wall, crammed with leather-bound volumes. A reading desk sits in the center of the room. A narrow staircase leads up.\n\nYou can see a reading desk (on which is a dusty journal) here."
+          },
+          {
+            "check": "reading desk",
+            "command": "n",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Library\nTall bookshelves line every wall, crammed with leather-bound volumes. A reading desk sits in the center of the room. A narrow staircase leads up.\n\nYou can see a reading desk (on which is a dusty journal) here."
+          },
+          {
+            "check": "treasure is hidden",
+            "command": "open journal",
+            "cmd_idx": 2,
+            "passed": true,
+            "response": "You flip through the journal. Most entries are illegible, but one page reads: \"The treasure is hidden where water meets stone.\"\n\n[Your score has just gone up by two points.]"
+          }
+        ]
+      },
       "score": "2/10",
       "win": false,
       "won_text": false,
@@ -84,13 +169,70 @@
     },
     {
       "name": "study-cabinet",
-      "commands": 6,
-      "transcript_lines": 55,
-      "exit_code": 0,
-      "output_file": "sample\\tests\\scenarios\\study-cabinet.transcript.txt",
-      "commands_file": "sample\\tests\\scenarios\\study-cabinet.commands.txt",
-      "seed": "1",
       "status": "pass",
+      "seed": "1",
+      "commands": 6,
+      "transcript_lines": 51,
+      "exit_code": 0,
+      "transcript_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\study-cabinet.transcript.txt",
+      "commands_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\study-cabinet.commands.txt",
+      "assertions": {
+        "total": 7,
+        "passed": 7,
+        "failed": 0,
+        "failures": [],
+        "details": [
+          {
+            "check": "Taken",
+            "command": "take brass key",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Taken."
+          },
+          {
+            "check": "Library",
+            "command": "n",
+            "cmd_idx": 2,
+            "passed": true,
+            "response": "Library\nTall bookshelves line every wall, crammed with leather-bound volumes. A reading desk sits in the center of the room. A narrow staircase leads up.\n\nYou can see a reading desk (on which is a dusty journal) here."
+          },
+          {
+            "check": "Study",
+            "command": "up",
+            "cmd_idx": 3,
+            "passed": true,
+            "response": "Study\nA cozy room at the top of the narrow staircase. A wooden cabinet stands against one wall. The only exit is back down.\n\nYou can see a wooden cabinet (closed) here."
+          },
+          {
+            "check": "wooden cabinet",
+            "command": "up",
+            "cmd_idx": 3,
+            "passed": true,
+            "response": "Study\nA cozy room at the top of the narrow staircase. A wooden cabinet stands against one wall. The only exit is back down.\n\nYou can see a wooden cabinet (closed) here."
+          },
+          {
+            "check": "You unlock",
+            "command": "unlock cabinet with brass key",
+            "cmd_idx": 4,
+            "passed": true,
+            "response": "You unlock the wooden cabinet."
+          },
+          {
+            "check": "You open",
+            "command": "open cabinet",
+            "cmd_idx": 5,
+            "passed": true,
+            "response": "You open the wooden cabinet, revealing a silver locket."
+          },
+          {
+            "check": "/glow|accomplishment/",
+            "command": "take silver locket",
+            "cmd_idx": 6,
+            "passed": true,
+            "response": "As you pick up the locket, it glows faintly. You feel a sense of accomplishment.\n\n[Your score has just gone up by three points.]"
+          }
+        ]
+      },
       "score": "3/10",
       "win": false,
       "won_text": false,
@@ -107,13 +249,42 @@
     },
     {
       "name": "garden-coin",
-      "commands": 2,
-      "transcript_lines": 35,
-      "exit_code": 0,
-      "output_file": "sample\\tests\\scenarios\\garden-coin.transcript.txt",
-      "commands_file": "sample\\tests\\scenarios\\garden-coin.commands.txt",
-      "seed": "1",
       "status": "pass",
+      "seed": "1",
+      "commands": 2,
+      "transcript_lines": 31,
+      "exit_code": 0,
+      "transcript_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\garden-coin.transcript.txt",
+      "commands_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\garden-coin.commands.txt",
+      "assertions": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "failures": [],
+        "details": [
+          {
+            "check": "Garden",
+            "command": "s",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Garden\nA walled garden overgrown with ivy and wildflowers. A stone fountain stands in the center, dry and cracked. A path continues south to a pond.\n\nYou can see a rusty coin here."
+          },
+          {
+            "check": "stone fountain",
+            "command": "s",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Garden\nA walled garden overgrown with ivy and wildflowers. A stone fountain stands in the center, dry and cracked. A path continues south to a pond.\n\nYou can see a rusty coin here."
+          },
+          {
+            "check": "/grime|weight/",
+            "command": "take rusty coin",
+            "cmd_idx": 2,
+            "passed": true,
+            "response": "You brush off the grime. Despite its age, the coin has a satisfying weight.\n\n[Your score has just gone up by two points.]"
+          }
+        ]
+      },
       "score": "2/10",
       "win": false,
       "won_text": false,
@@ -130,13 +301,42 @@
     },
     {
       "name": "pond-ring",
-      "commands": 3,
-      "transcript_lines": 41,
-      "exit_code": 0,
-      "output_file": "sample\\tests\\scenarios\\pond-ring.transcript.txt",
-      "commands_file": "sample\\tests\\scenarios\\pond-ring.commands.txt",
-      "seed": "1",
       "status": "pass",
+      "seed": "1",
+      "commands": 3,
+      "transcript_lines": 37,
+      "exit_code": 0,
+      "transcript_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\pond-ring.transcript.txt",
+      "commands_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\pond-ring.commands.txt",
+      "assertions": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "failures": [],
+        "details": [
+          {
+            "check": "Pond",
+            "command": "s",
+            "cmd_idx": 2,
+            "passed": true,
+            "response": "Pond\nA small, murky pond surrounded by reeds and flat stones. The water is still and dark. The garden lies back to the north."
+          },
+          {
+            "check": "flat stones",
+            "command": "s",
+            "cmd_idx": 2,
+            "passed": true,
+            "response": "Pond\nA small, murky pond surrounded by reeds and flat stones. The water is still and dark. The garden lies back to the north."
+          },
+          {
+            "check": "golden ring",
+            "command": "push flat stones",
+            "cmd_idx": 3,
+            "passed": true,
+            "response": "You push aside one of the loose stones and discover a golden ring hidden beneath it!\n\n[Your score has just gone up by three points.]"
+          }
+        ]
+      },
       "score": "3/10",
       "win": false,
       "won_text": false,
@@ -153,13 +353,56 @@
     },
     {
       "name": "verb-help-verbs",
-      "commands": 1,
-      "transcript_lines": 30,
-      "exit_code": 0,
-      "output_file": "sample\\tests\\scenarios\\verb-help-verbs.transcript.txt",
-      "commands_file": "sample\\tests\\scenarios\\verb-help-verbs.commands.txt",
-      "seed": "1",
       "status": "pass",
+      "seed": "1",
+      "commands": 1,
+      "transcript_lines": 26,
+      "exit_code": 0,
+      "transcript_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\verb-help-verbs.transcript.txt",
+      "commands_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\verb-help-verbs.commands.txt",
+      "assertions": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "failures": [],
+        "details": [
+          {
+            "check": "Movement:",
+            "command": "verbs",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Movement:  NORTH (N), SOUTH (S), EAST (E), WEST (W), UP (U), DOWN (D), IN, OUT\nLooking:   LOOK (L), EXAMINE (X) thing, SEARCH thing, LOOK IN/UNDER thing\nTaking:    TAKE thing, DROP thing, PUT thing IN/ON thing, GIVE thing TO person\nUsing:     OPEN, CLOSE, LOCK/UNLOCK thing WITH key, PUSH, PULL, TURN..."
+          },
+          {
+            "check": "Looking:",
+            "command": "verbs",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Movement:  NORTH (N), SOUTH (S), EAST (E), WEST (W), UP (U), DOWN (D), IN, OUT\nLooking:   LOOK (L), EXAMINE (X) thing, SEARCH thing, LOOK IN/UNDER thing\nTaking:    TAKE thing, DROP thing, PUT thing IN/ON thing, GIVE thing TO person\nUsing:     OPEN, CLOSE, LOCK/UNLOCK thing WITH key, PUSH, PULL, TURN..."
+          },
+          {
+            "check": "Taking:",
+            "command": "verbs",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Movement:  NORTH (N), SOUTH (S), EAST (E), WEST (W), UP (U), DOWN (D), IN, OUT\nLooking:   LOOK (L), EXAMINE (X) thing, SEARCH thing, LOOK IN/UNDER thing\nTaking:    TAKE thing, DROP thing, PUT thing IN/ON thing, GIVE thing TO person\nUsing:     OPEN, CLOSE, LOCK/UNLOCK thing WITH key, PUSH, PULL, TURN..."
+          },
+          {
+            "check": "Using:",
+            "command": "verbs",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Movement:  NORTH (N), SOUTH (S), EAST (E), WEST (W), UP (U), DOWN (D), IN, OUT\nLooking:   LOOK (L), EXAMINE (X) thing, SEARCH thing, LOOK IN/UNDER thing\nTaking:    TAKE thing, DROP thing, PUT thing IN/ON thing, GIVE thing TO person\nUsing:     OPEN, CLOSE, LOCK/UNLOCK thing WITH key, PUSH, PULL, TURN..."
+          },
+          {
+            "check": "Meta:",
+            "command": "verbs",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Movement:  NORTH (N), SOUTH (S), EAST (E), WEST (W), UP (U), DOWN (D), IN, OUT\nLooking:   LOOK (L), EXAMINE (X) thing, SEARCH thing, LOOK IN/UNDER thing\nTaking:    TAKE thing, DROP thing, PUT thing IN/ON thing, GIVE thing TO person\nUsing:     OPEN, CLOSE, LOCK/UNLOCK thing WITH key, PUSH, PULL, TURN..."
+          }
+        ]
+      },
       "score": "0/10",
       "win": false,
       "won_text": false,
@@ -176,13 +419,42 @@
     },
     {
       "name": "verb-help-help",
-      "commands": 1,
-      "transcript_lines": 28,
-      "exit_code": 0,
-      "output_file": "sample\\tests\\scenarios\\verb-help-help.transcript.txt",
-      "commands_file": "sample\\tests\\scenarios\\verb-help-help.commands.txt",
-      "seed": "1",
       "status": "pass",
+      "seed": "1",
+      "commands": 1,
+      "transcript_lines": 24,
+      "exit_code": 0,
+      "transcript_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\verb-help-help.transcript.txt",
+      "commands_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\verb-help-help.commands.txt",
+      "assertions": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "failures": [],
+        "details": [
+          {
+            "check": "text adventure",
+            "command": "help",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "This is a text adventure. Type commands in plain English.\nMost puzzles can be solved with simple two-word commands: VERB NOUN.\nType VERBS for a full list of available commands.\nType LOOK to see your surroundings. Type INVENTORY (or I) to check what you carry."
+          },
+          {
+            "check": "VERB NOUN",
+            "command": "help",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "This is a text adventure. Type commands in plain English.\nMost puzzles can be solved with simple two-word commands: VERB NOUN.\nType VERBS for a full list of available commands.\nType LOOK to see your surroundings. Type INVENTORY (or I) to check what you carry."
+          },
+          {
+            "check": "VERBS",
+            "command": "help",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "This is a text adventure. Type commands in plain English.\nMost puzzles can be solved with simple two-word commands: VERB NOUN.\nType VERBS for a full list of available commands.\nType LOOK to see your surroundings. Type INVENTORY (or I) to check what you carry."
+          }
+        ]
+      },
       "score": "0/10",
       "win": false,
       "won_text": false,
@@ -199,13 +471,28 @@
     },
     {
       "name": "verb-help-parser-error",
-      "commands": 1,
-      "transcript_lines": 25,
-      "exit_code": 0,
-      "output_file": "sample\\tests\\scenarios\\verb-help-parser-error.transcript.txt",
-      "commands_file": "sample\\tests\\scenarios\\verb-help-parser-error.commands.txt",
-      "seed": "1",
       "status": "pass",
+      "seed": "1",
+      "commands": 1,
+      "transcript_lines": 21,
+      "exit_code": 0,
+      "transcript_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\verb-help-parser-error.transcript.txt",
+      "commands_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\verb-help-parser-error.commands.txt",
+      "assertions": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "failures": [],
+        "details": [
+          {
+            "check": "don't know that command",
+            "command": "flurble",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "I don't know that command. Type VERBS for a list, or try simpler phrasing like VERB NOUN."
+          }
+        ]
+      },
       "score": "0/10",
       "win": false,
       "won_text": false,
@@ -222,13 +509,28 @@
     },
     {
       "name": "verb-help-synonym-examine",
-      "commands": 1,
-      "transcript_lines": 25,
-      "exit_code": 0,
-      "output_file": "sample\\tests\\scenarios\\verb-help-synonym-examine.transcript.txt",
-      "commands_file": "sample\\tests\\scenarios\\verb-help-synonym-examine.commands.txt",
-      "seed": "1",
       "status": "pass",
+      "seed": "1",
+      "commands": 1,
+      "transcript_lines": 21,
+      "exit_code": 0,
+      "transcript_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\verb-help-synonym-examine.transcript.txt",
+      "commands_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\verb-help-synonym-examine.commands.txt",
+      "assertions": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "failures": [],
+        "details": [
+          {
+            "check": "ornate chandelier",
+            "command": "inspect chandelier",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "An ornate chandelier with dozens of sparkling crystals."
+          }
+        ]
+      },
       "score": "0/10",
       "win": false,
       "won_text": false,
@@ -245,13 +547,28 @@
     },
     {
       "name": "verb-help-synonym-take",
-      "commands": 1,
-      "transcript_lines": 25,
-      "exit_code": 0,
-      "output_file": "sample\\tests\\scenarios\\verb-help-synonym-take.transcript.txt",
-      "commands_file": "sample\\tests\\scenarios\\verb-help-synonym-take.commands.txt",
-      "seed": "1",
       "status": "pass",
+      "seed": "1",
+      "commands": 1,
+      "transcript_lines": 21,
+      "exit_code": 0,
+      "transcript_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\verb-help-synonym-take.transcript.txt",
+      "commands_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\verb-help-synonym-take.commands.txt",
+      "assertions": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "failures": [],
+        "details": [
+          {
+            "check": "Taken",
+            "command": "grab brass key",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Taken."
+          }
+        ]
+      },
       "score": "0/10",
       "win": false,
       "won_text": false,
@@ -268,13 +585,28 @@
     },
     {
       "name": "verb-help-use-alone",
-      "commands": 1,
-      "transcript_lines": 25,
-      "exit_code": 0,
-      "output_file": "sample\\tests\\scenarios\\verb-help-use-alone.transcript.txt",
-      "commands_file": "sample\\tests\\scenarios\\verb-help-use-alone.commands.txt",
-      "seed": "1",
       "status": "pass",
+      "seed": "1",
+      "commands": 1,
+      "transcript_lines": 21,
+      "exit_code": 0,
+      "transcript_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\verb-help-use-alone.transcript.txt",
+      "commands_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\verb-help-use-alone.commands.txt",
+      "assertions": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "failures": [],
+        "details": [
+          {
+            "check": "How do you want to use",
+            "command": "use brass key",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "How do you want to use the brass key? Try a specific verb: OPEN, PUSH, PULL, TURN, EAT, WEAR, etc."
+          }
+        ]
+      },
       "score": "0/10",
       "win": false,
       "won_text": false,
@@ -291,13 +623,49 @@
     },
     {
       "name": "verb-help-use-on",
-      "commands": 4,
-      "transcript_lines": 45,
-      "exit_code": 0,
-      "output_file": "sample\\tests\\scenarios\\verb-help-use-on.transcript.txt",
-      "commands_file": "sample\\tests\\scenarios\\verb-help-use-on.commands.txt",
-      "seed": "1",
       "status": "pass",
+      "seed": "1",
+      "commands": 4,
+      "transcript_lines": 41,
+      "exit_code": 0,
+      "transcript_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\verb-help-use-on.transcript.txt",
+      "commands_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\verb-help-use-on.commands.txt",
+      "assertions": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "failures": [],
+        "details": [
+          {
+            "check": "Taken",
+            "command": "take brass key",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Taken."
+          },
+          {
+            "check": "Library",
+            "command": "n",
+            "cmd_idx": 2,
+            "passed": true,
+            "response": "Library\nTall bookshelves line every wall, crammed with leather-bound volumes. A reading desk sits in the center of the room. A narrow staircase leads up.\n\nYou can see a reading desk (on which is a dusty journal) here."
+          },
+          {
+            "check": "Study",
+            "command": "up",
+            "cmd_idx": 3,
+            "passed": true,
+            "response": "Study\nA cozy room at the top of the narrow staircase. A wooden cabinet stands against one wall. The only exit is back down.\n\nYou can see a wooden cabinet (closed) here."
+          },
+          {
+            "check": "You unlock",
+            "command": "use brass key on wooden cabinet",
+            "cmd_idx": 4,
+            "passed": true,
+            "response": "You unlock the wooden cabinet."
+          }
+        ]
+      },
       "score": "0/10",
       "win": false,
       "won_text": false,
@@ -314,13 +682,98 @@
     },
     {
       "name": "full-walkthrough",
-      "commands": 16,
-      "transcript_lines": 128,
-      "exit_code": 0,
-      "output_file": "sample\\tests\\scenarios\\full-walkthrough.transcript.txt",
-      "commands_file": "sample\\tests\\scenarios\\full-walkthrough.commands.txt",
-      "seed": "1",
       "status": "pass",
+      "seed": "1",
+      "commands": 16,
+      "transcript_lines": 125,
+      "exit_code": 0,
+      "transcript_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\full-walkthrough.transcript.txt",
+      "commands_file": "C:\\code\\text-games\\i7\\sample\\tests\\scenarios\\full-walkthrough.commands.txt",
+      "assertions": {
+        "total": 11,
+        "passed": 11,
+        "failed": 0,
+        "failures": [],
+        "details": [
+          {
+            "check": "Taken",
+            "command": "take brass key",
+            "cmd_idx": 1,
+            "passed": true,
+            "response": "Taken."
+          },
+          {
+            "check": "Library",
+            "command": "n",
+            "cmd_idx": 2,
+            "passed": true,
+            "response": "Library\nTall bookshelves line every wall, crammed with leather-bound volumes. A reading desk sits in the center of the room. A narrow staircase leads up.\n\nYou can see a reading desk (on which is a dusty journal) here."
+          },
+          {
+            "check": "treasure is hidden",
+            "command": "open journal",
+            "cmd_idx": 3,
+            "passed": true,
+            "response": "You flip through the journal. Most entries are illegible, but one page reads: \"The treasure is hidden where water meets stone.\"\n\n[Your score has just gone up by two points.]"
+          },
+          {
+            "check": "Garden",
+            "command": "s",
+            "cmd_idx": 5,
+            "passed": true,
+            "response": "Garden\nA walled garden overgrown with ivy and wildflowers. A stone fountain stands in the center, dry and cracked. A path continues south to a pond.\n\nYou can see a rusty coin here."
+          },
+          {
+            "check": "Pond",
+            "command": "s",
+            "cmd_idx": 7,
+            "passed": true,
+            "response": "Pond\nA small, murky pond surrounded by reeds and flat stones. The water is still and dark. The garden lies back to the north."
+          },
+          {
+            "check": "golden ring",
+            "command": "push flat stones",
+            "cmd_idx": 8,
+            "passed": true,
+            "response": "You push aside one of the loose stones and discover a golden ring hidden beneath it!\n\n[Your score has just gone up by three points.]"
+          },
+          {
+            "check": "Taken",
+            "command": "take golden ring",
+            "cmd_idx": 9,
+            "passed": true,
+            "response": "Taken."
+          },
+          {
+            "check": "Library",
+            "command": "n",
+            "cmd_idx": 12,
+            "passed": true,
+            "response": "Library\nTall bookshelves line every wall, crammed with leather-bound volumes. A reading desk sits in the center of the room. A narrow staircase leads up.\n\nYou can see a reading desk (on which is a dusty journal) here."
+          },
+          {
+            "check": "Study",
+            "command": "up",
+            "cmd_idx": 13,
+            "passed": true,
+            "response": "Study\nA cozy room at the top of the narrow staircase. A wooden cabinet stands against one wall. The only exit is back down.\n\nYou can see a wooden cabinet (closed) here."
+          },
+          {
+            "check": "/glow|accomplishment/",
+            "command": "take silver locket",
+            "cmd_idx": 16,
+            "passed": true,
+            "response": "As you pick up the locket, it glows faintly. You feel a sense of accomplishment.\n\n\nCongratulations! You have found all the secrets of this place. You win!\n\n\n\n    *** You have won ***\n\n\nIn that game you scored 10 out of a possible 10, in 16 turns, earning you the rank of Winner.\n\n\nWould you like to R..."
+          },
+          {
+            "check": "You have won",
+            "command": "take silver locket",
+            "cmd_idx": 16,
+            "passed": true,
+            "response": "As you pick up the locket, it glows faintly. You feel a sense of accomplishment.\n\n\nCongratulations! You have found all the secrets of this place. You win!\n\n\n\n    *** You have won ***\n\n\nIn that game you scored 10 out of a possible 10, in 16 turns, earning you the rank of Winner.\n\n\nWould you like to R..."
+          }
+        ]
+      },
       "score": "10/10",
       "win": true,
       "won_text": true,

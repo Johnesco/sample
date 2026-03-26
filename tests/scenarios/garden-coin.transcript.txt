@@ -29,7 +29,3 @@ You brush off the grime. Despite its age, the coin has a satisfying weight.
 
 > score
 You have so far scored 2 out of a possible 10, in 3 turns, earning you the rank of Beginner.
-
-
-> quit
-Are you sure you want to quit? 

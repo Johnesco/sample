@@ -35,7 +35,3 @@ You push aside one of the loose stones and discover a golden ring hidden beneath
 
 > score
 You have so far scored 3 out of a possible 10, in 4 turns, earning you the rank of Beginner.
-
-
-> quit
-Are you sure you want to quit? 

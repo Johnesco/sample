@@ -24,7 +24,3 @@ Meta:      SAVE, RESTORE, UNDO, SCORE, HELP, VERBS, RESTART, QUIT
 
 > score
 You have so far scored 0 out of a possible 10, in 1 turn, earning you the rank of Beginner.
-
-
-> quit
-Are you sure you want to quit? 

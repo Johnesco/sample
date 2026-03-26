@@ -19,7 +19,3 @@ I don't know that command. Type VERBS for a list, or try simpler phrasing like V
 
 > score
 You have so far scored 0 out of a possible 10, in 1 turn, earning you the rank of Beginner.
-
-
-> quit
-Are you sure you want to quit? 

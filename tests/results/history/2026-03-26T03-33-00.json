@@ -1,6 +1,6 @@
 {
   "game": "sample",
-  "timestamp": "2026-03-26T08:47:20+00:00",
+  "timestamp": "2026-03-26T08:33:00+00:00",
   "binary_hash": "749a6852",
   "duration_seconds": 0.5,
   "layers": {
@@ -15,8 +15,8 @@
         "full-walkthrough"
       ],
       "assertions": {
-        "total": 48,
-        "passed": 48,
+        "total": 49,
+        "passed": 49,
         "failed": 0
       },
       "duration": 0.4,

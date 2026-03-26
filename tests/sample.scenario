@@ -1,0 +1,117 @@
+
+== smoke: Entrance Hall Smoke Test  [smoke tests]
+> look
+? Entrance Hall
+? crystal chandelier
+? brass key
+
+== take-key: Take Brass Key  [smoke tests]
+> take brass key
+? Taken
+
+== library-journal: Library Journal  [puzzles]
+> n
+? Library
+? bookshelves
+? reading desk
+> open journal
+? treasure is hidden
+
+== study-cabinet: Unlock Study Cabinet  [puzzles]
+> take brass key
+? Taken
+> n
+? Library
+> up
+? Study
+? wooden cabinet
+> unlock cabinet with brass key
+? You unlock
+> open cabinet
+? You open
+> take silver locket
+? /glow|accomplishment/
+
+== garden-coin: Garden Rusty Coin  [puzzles]
+> s
+? Garden
+? stone fountain
+> take rusty coin
+? /grime|weight/
+
+== pond-ring: Pond Golden Ring  [puzzles]
+> s
+> s
+? Pond
+? flat stones
+> push flat stones
+? golden ring
+
+== verb-help-verbs: Verbs Command  [verb help]
+> verbs
+? Movement:
+? Looking:
+? Taking:
+? Using:
+? Meta:
+
+== verb-help-help: Help Command  [verb help]
+> help
+? text adventure
+? VERB NOUN
+? VERBS
+
+== verb-help-parser-error: Parser Error Handling  [verb help]
+> flurble
+? don't know that command
+
+== verb-help-synonym-examine: Examine Synonyms  [verb help]
+> inspect chandelier
+? ornate chandelier
+
+== verb-help-synonym-take: Take Synonyms  [verb help]
+> grab brass key
+? Taken
+
+== verb-help-use-alone: Use Without Target  [verb help]
+> use brass key
+? How do you want to use
+
+== verb-help-use-on: Use Key On Cabinet  [verb help]
+> take brass key
+? Taken
+> n
+? Library
+> up
+? Study
+> use brass key on wooden cabinet
+? You unlock
+
+== full-walkthrough: Complete Walkthrough  [win paths, primary]
+> take brass key
+? Taken
+> n
+? Library
+> open journal
+? treasure is hidden
+> s
+> s
+? Garden
+> take rusty coin
+> s
+? Pond
+> push flat stones
+? golden ring
+> take golden ring
+? Taken
+> n
+> n
+> n
+? Library
+> up
+? Study
+> unlock cabinet with brass key
+> open cabinet
+> take silver locket
+? /glow|accomplishment/
+? You have won
